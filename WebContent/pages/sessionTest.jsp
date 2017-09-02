@@ -61,7 +61,69 @@ footer {
 	</nav>
 	<div class="row content">
 			<div class="col-sm-2 sidenav"></div>
-			<div class="col-sm-8"></div>
+			<div class="col-sm-8">
+				<br>
+				<div class="row" id="firstRow">
+					<div class="col-sm-6">
+						<form method="post" action="/RaghuWeb4/employee">
+							<input type="hidden" name="hidden" value="searchEmp" />
+							<div class="col-xs-8">
+								<input type="number" id="empNoSea" name="empNoSea"
+									class="form-control" placeholder="Enter Employee number" required />
+							</div>
+							<button class="btn btn-info" type="submit">
+								<span class="glyphicon glyphicon-search"></span>Search Employee
+							</button>
+						</form>
+					</div>
+					<div class="col-sm-6">
+						
+					</div>
+				</div>
+				<c:if test="${not empty requestScope.msg}">
+					<div class="row" id="message">${requestScope.msg}</div>
+					<br>
+				</c:if>	
+				<c:if test="${not empty requestScope.searchEmp}">
+					<div class="row" id="display">
+						<table class="table">
+							<tr>
+								<td>Employee ID :</td>
+								<td>${requestScope.searchEmp.empNo}</td>
+							</tr>
+							<tr>
+								<td>Department No :</td>
+								<td>${requestScope.searchEmp.deptNo}</td>
+							</tr>
+							<tr>
+								<td>Date of Birth :</td>
+								<td>${requestScope.searchEmp.dob}</td>
+							</tr>
+							<tr>
+								<td>Date of Joining :</td>
+								<td>${requestScope.searchEmp.doj}</td>
+							</tr>
+							<tr>
+								<td>Salary :</td>
+								<td>$${requestScope.searchEmp.salary}</td>
+							</tr>
+							<tr>
+								<td>Salary Grade :</td>
+								<td>${requestScope.searchEmp.salGrade}</td>
+							</tr>
+							<tr>
+								<td></td>
+							</tr>
+						</table>
+						
+						<form method="post" action="/sessionServlet">
+							<input type="hidden" name="empId" value="${requestScope.searchEmp.empNo}"/>
+						<button class="btn btn-success">Add</button><button class="btn btn-info">Show</button></form>
+					</div>
+					<br>
+				</c:if>			
+				
+			</div>
 			<div class="col-sm-2 sidenav"></div>
 			</div>
 	<footer class="container-fluid text-center">
